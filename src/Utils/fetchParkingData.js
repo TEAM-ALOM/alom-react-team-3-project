@@ -4,19 +4,18 @@ const SERVICE_KEY =
 const BASE_URL =
   "https://api.odcloud.kr/api/15112975/v1/uddi:bbd28616-b6b9-45bb-8435-d46ba6a6ad7e";
 
-export const fetchParkingData = async (page = 1, perPage = 100) => {
-  const url = `${BASE_URL}?page=${page}&perPage=${perPage}&returnType=JSON&serviceKey=${SERVICE_KEY}`;
+const withParams = (page = 1, perPage = 100) =>
+  `${BASE_URL}?page=${page}&perPage=${perPage}&returnType=JSON&serviceKey=${SERVICE_KEY}`;
 
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP 오류! 상태 코드: ${response.status}`);
-    }
+export async function fetchParkingList(page = 1, perPage = 100) {
+  //전체 데이터 필요할 때때
+  const response = await fetch(withParams(page, perPage));
+  const json = await response.json();
+  return json.data || [];
+}
 
-    const json = await response.json();
-    return json.data || [];
-  } catch (error) {
-    console.error("❌ 주차장 데이터 불러오기 실패:", error);
-    return [];
-  }
-};
+export async function fetchParkingNames() {
+  // 주차장 이름 데이터 필요할 때
+  const data = await fetchParkingList();
+  return data.map((item) => item["주차장명"]);
+}
