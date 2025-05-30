@@ -5,11 +5,13 @@ import { isDarkModeAtom } from "./recoil/themeAtom";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./styles/style";
 import ToggleTheme from "./components/ToggleTheme";
+import GlobalStyle from "./styles/GlobalStyle";
 
 function App() {
   const isDark = useRecoilValue(isDarkModeAtom);
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      <GlobalStyle />
       <Router>
         <ToggleTheme />
         <Routes>
