@@ -19,3 +19,21 @@ export async function fetchParkingNames() {
   const data = await fetchParkingList();
   return data.map((item) => item["주차장명"]);
 }
+
+export async function fetchWeekdayTimes() {
+  // 평일 운영 시간 데이터 필요할 때
+  const data = await fetchParkingList();
+  return data.map((item) => item["평일운영시간"]);
+}
+
+export async function fetchSaturdayTimes() {
+  // 토요일 운영 시간 데이터 필요할 때
+  const data = await fetchParkingList();
+  return data.map((item) => item["토요일 운영시간"]);
+}
+
+export async function fetchSundayTimes() {
+  // 일요일 운영 시간 데이터 필요할 때
+  const data = await fetchParkingList();
+  return data.map((item) => item["일요일운영시간"]);
+}

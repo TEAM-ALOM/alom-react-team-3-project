@@ -1,15 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchParkingNames } from "../utils/fetchParkingData";
+import { fetchParkingList } from "../utils/fetchParkingData";
+import { useNavigate } from "react-router-dom";
 import Container from "../styles/Container";
 
 function ParkingList() {
+  const navigate = useNavigate();
+
   const {
     data: parkingList,
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["parkingNames"],
-    queryFn: fetchParkingNames,
+    queryKey: ["parkingList"],
+    queryFn: fetchParkingList,
   });
 
   return (
@@ -20,8 +23,14 @@ function ParkingList() {
       {isError && <p>데이터를 불러오는 데 실패했습니다.</p>}
 
       <ul>
-        {parkingList &&
-          parkingList.map((name, idx) => <li key={idx}>{name}</li>)}
+        {parkingList?.map((item, idx) => (
+          <li
+            key={idx}
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/detail", { state: item })}>
+            {item["주차장명"]}
+          </li>
+        ))}
       </ul>
     </Container>
   );
