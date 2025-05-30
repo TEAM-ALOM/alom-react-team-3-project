@@ -1,12 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ParkingList from "./components/ParkingList"; // 통일된 경로 사용
-import ParkingDetail from "./Components/ParkingDetail";
+
 import { useRecoilValue } from "recoil";
 import { isDarkModeAtom } from "./recoil/themeAtom";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./styles/style";
 import ToggleTheme from "./components/ToggleTheme";
 import GlobalStyle from "./styles/GlobalStyle";
+import ParkingList from "./components/ParkingList";
+import ParkingDetail from "./components/ParkingDetail";
 
 function App() {
   const isDark = useRecoilValue(isDarkModeAtom);
@@ -17,8 +18,14 @@ function App() {
       <Router>
         <ToggleTheme />
         <Routes>
-          <Route path="/" element={<ParkingList />} />
-          <Route path="/detail" element={<ParkingDetail />} />
+          <Route
+            path='/'
+            element={<ParkingList />}
+          />
+          <Route
+            path='/detail'
+            element={<ParkingDetail />}
+          />
         </Routes>
       </Router>
     </ThemeProvider>
