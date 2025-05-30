@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { fetchParkingNames } from "../Utils/fetchParkingData";
+import { fetchParkingNames } from "../utils/fetchParkingData";
+import Container from "../styles/Container";
 
 function ParkingList() {
   const [parkingList, setParkingList] = useState([]);
@@ -13,14 +14,14 @@ function ParkingList() {
   }, []);
 
   return (
-    <div>
+    <Container>
       <h1>광진구 주차장 정보</h1>
       <ul>
         {parkingList.map((name, idx) => (
           <li key={idx}>{name}</li>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 }
 
