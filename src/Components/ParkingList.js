@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchParkingList } from "../utils/fetchParkingData";
+import { fetchParkingList } from "../Utils/fetchParkingData";
 import { useNavigate } from "react-router-dom";
 import Container from "../styles/Container";
 

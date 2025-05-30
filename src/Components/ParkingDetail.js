@@ -1,27 +1,24 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { fetchParkingList } from "../utils/fetchParkingData";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function ParkingDetail() {
-  const [parking, setParking] = useState(null);
   const navigate = useNavigate();
+  const { state } = useLocation(); // 리스트에서 전달된 데이터
 
-  useEffect(() => {
-    const loadData = async () => {
-      const data = await fetchParkingList();
-      setParking(data[0]); // 첫 번째 주차장으로 임시 설정
-    };
-    loadData();
-  }, []);
+  if (!state) return <div>데이터가 없습니다.</div>;
 
-  if (!parking) return <div>로딩 중...</div>;
+  const {
+    주차장명,
+    평일운영시간,
+    토요일운영시간,
+    일요일운영시간,
+  } = state;
 
   return (
     <div>
-      <h3>{parking["주차장명"]} - 운영 시간</h3>
-      <p>평일: {parking["평일운영시간"]}</p>
-      <p>토요일: {parking["토요일 운영시간"]}</p>
-      <p>일요일: {parking["일요일운영시간"]}</p>
+      <h3>{주차장명} - 운영 시간</h3>
+      <p>평일: {평일운영시간}</p>
+      <p>토요일: {토요일운영시간}</p>
+      <p>일요일: {일요일운영시간}</p>
       <button onClick={() => navigate("/")}>HOME</button>
     </div>
   );
