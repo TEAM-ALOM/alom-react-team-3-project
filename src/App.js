@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ParkingList from "./Components/ParkingList";
+import ParkingDetail from "./Components/ParkingDetail";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
           path='/'
           element={<ParkingList />}
         />
+        <Route path="/detail" element={<ParkingDetail />} />
       </Routes>
     </Router>
   );

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { fetchParkingNames } from "../Utils/fetchParkingData";
+import { fetchParkingList } from "../Utils/fetchParkingData";
+import { useNavigate } from "react-router-dom";
 
 function ParkingList() {
   const [parkingList, setParkingList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadData = async () => {
-      const response = await fetchParkingNames();
+      const response = await fetchParkingList();
       setParkingList(response);
     };
     loadData();
@@ -16,8 +18,14 @@ function ParkingList() {
     <div>
       <h1>광진구 주차장 정보</h1>
       <ul>
-        {parkingList.map((name, idx) => (
-          <li key={idx}>{name}</li>
+        {parkingList.map((item, idx) => (
+          <li
+            key={idx}
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/detail", { state: item })}
+          >
+            {item["주차장명"]}
+          </li>
         ))}
       </ul>
     </div>
