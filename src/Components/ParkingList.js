@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+
 import { fetchParkingList } from "../Utils/fetchParkingData";
 import { useNavigate } from "react-router-dom";
+import { fetchParkingNames } from "../Utils/fetchParkingData";
+import Container from "../styles/Container";
+
 
 function ParkingList() {
   const [parkingList, setParkingList] = useState([]);
@@ -15,7 +19,7 @@ function ParkingList() {
   }, []);
 
   return (
-    <div>
+    <Container>
       <h1>광진구 주차장 정보</h1>
       <ul>
         {parkingList.map((item, idx) => (
@@ -28,7 +32,7 @@ function ParkingList() {
           </li>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 }
 
