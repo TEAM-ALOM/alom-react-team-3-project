@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchParkingList } from "../Utils/fetchParkingData";
+import { fetchParkingList } from "../utils/fetchParkingData";
 
 function ParkingDetail() {
   const [parking, setParking] = useState(null);
