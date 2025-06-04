@@ -11,6 +11,8 @@ const Header = styled.header`
 const Title = styled.h1`
   font-size: 48px;
   color: ${(props) => props.theme.accentColor};
+  font-weight: 600;
+  letter-spacing: -0.03em;
 `;
 
 const InfoCard = styled.div`
@@ -25,6 +27,8 @@ const Label = styled.p`
   font-size: 18px;
   margin: 12px 0;
   word-break: keep-all;
+  font-weight: 600;
+  letter-spacing: -0.03em;
 
   a {
     color: ${(props) => props.theme.accentColor};

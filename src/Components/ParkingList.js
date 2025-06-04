@@ -26,6 +26,8 @@ const Parking = styled.li`
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     color: ${(props) => props.theme.accentColor};
   }
+  font-weight: 600;
+  letter-spacing: -0.03em;
 `;
 
 const Loader = styled.span`
