@@ -8,7 +8,7 @@ const withParams = (page = 1, perPage = 100) =>
   `${BASE_URL}?page=${page}&perPage=${perPage}&returnType=JSON&serviceKey=${SERVICE_KEY}`;
 
 export async function fetchParkingList(page = 1, perPage = 100) {
-  //전체 데이터 필요할 때때
+  //전체 데이터 필요할 때
   const response = await fetch(withParams(page, perPage));
   const json = await response.json();
   return json.data || [];
