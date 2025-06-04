@@ -37,3 +37,9 @@ export async function fetchSundayTimes() {
   const data = await fetchParkingList();
   return data.map((item) => item["일요일운영시간"]);
 }
+
+export async function fetchParkingFee() {
+  // 시간 당 요금을 불러오는 경우
+  const data = await fetchParkingList();
+  return data.map((item) => item[" 시간당주차요금 "]);
+}

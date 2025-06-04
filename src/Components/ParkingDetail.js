@@ -56,6 +56,7 @@ function ParkingDetail() {
     평일운영시간,
     토요일운영시간,
     일요일운영시간,
+    시간당주차요금 
   } = state;
 
   return (
@@ -68,6 +69,7 @@ function ParkingDetail() {
         <Label>📅 평일: {평일운영시간}</Label>
         <Label>📅 토요일: {토요일운영시간}</Label>
         <Label>📅 일요일: {일요일운영시간}</Label>
+        <Label>🕚 시간 당 주차요금: { 시간당주차요금 } </Label>
       </InfoCard>
 
       <FixedButton onClick={() => navigate("/")}>홈으로</FixedButton>
