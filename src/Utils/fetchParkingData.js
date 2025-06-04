@@ -43,3 +43,9 @@ export async function fetchParkingFee() {
   const data = await fetchParkingList();
   return data.map((item) => item[" 시간당주차요금 "]);
 }
+
+export async function fetchAddress() {
+  // 시간 당 요금을 불러오는 경우
+  const data = await fetchParkingList();
+  return data.map((item) => item["주차장위치"]);
+}

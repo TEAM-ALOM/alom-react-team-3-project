@@ -56,8 +56,11 @@ function ParkingDetail() {
     평일운영시간,
     토요일운영시간,
     일요일운영시간,
-    시간당주차요금 
+    시간당주차요금,
+    주차장위치
   } = state;
+
+  const naverMapUrl = `https://map.naver.com/v5/search/${encodeURIComponent(주차장위치)}`;
 
   return (
     <Container>
@@ -70,6 +73,10 @@ function ParkingDetail() {
         <Label>📅 토요일: {토요일운영시간}</Label>
         <Label>📅 일요일: {일요일운영시간}</Label>
         <Label>🕚 시간 당 주차요금: { 시간당주차요금 } </Label>
+        <Label>📍 <a href={naverMapUrl} target="_blank" rel="noopener noreferrer">
+            {주차장위치}
+          </a>
+        </Label>
       </InfoCard>
 
       <FixedButton onClick={() => navigate("/")}>홈으로</FixedButton>
