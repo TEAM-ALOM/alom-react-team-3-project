@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Container from "../styles/Container";
+import { useEffect } from "react"; // ✅ useEffect 추가
 
 const Header = styled.header`
   height: 10vh;
@@ -65,6 +66,20 @@ function ParkingDetail() {
   const navigate = useNavigate();
   const { state } = useLocation();
 
+  // ✅ ESC 키 이벤트 핸들러
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") {
+        navigate("/");
+      }
+    };
+
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [navigate]);
+
   if (!state) return <div>데이터가 없습니다.</div>;
 
   const {
@@ -90,13 +105,10 @@ function ParkingDetail() {
         <Label>📅 평일: {평일운영시간}</Label>
         <Label>📅 토요일: {토요일운영시간}</Label>
         <Label>📅 일요일: {일요일운영시간}</Label>
-        <Label>🕚 시간 당 주차요금: {시간당주차요금} </Label>
+        <Label>🕚 시간 당 주차요금: {시간당주차요금}</Label>
         <Label>
           📍{" "}
-          <a
-            href={naverMapUrl}
-            target='_blank'
-            rel='noopener noreferrer'>
+          <a href={naverMapUrl} target="_blank" rel="noopener noreferrer">
             {주차장위치}
           </a>
         </Label>
