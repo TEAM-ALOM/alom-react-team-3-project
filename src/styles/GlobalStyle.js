@@ -8,15 +8,15 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html, body {
-    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    font-family: 'Pretendard Variable', system-ui, sans-serif;
+    margin: 0;
     background-color: ${(props) => props.theme.bgColor};
     color: ${(props) => props.theme.textColor};
-    transition: all 0.2s ease-in-out;
   }
 
   a {
-    color: inherit;
     text-decoration: none;
+    color: inherit;
   }
 
   button {

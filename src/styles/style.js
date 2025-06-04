@@ -1,11 +1,16 @@
+// theme.js
 export const lightTheme = {
-  bgColor: "#f5f6fa",
-  textColor: "#2f3640",
-  accentColor: "#8c7ae6",
+  bgColor: "#f9fafb",
+  textColor: "#1f2937",
+  accentColor: "#3b82f6",
+  cardBgColor: "#ffffff",
+  mode: "light",
 };
 
 export const darkTheme = {
-  bgColor: "#2f3640",
-  textColor: "#f5f6fa",
-  accentColor: "#8c7ae6",
+  bgColor: "#1e293b",
+  textColor: "#f1f5f9",
+  accentColor: "#60a5fa",
+  cardBgColor: "#334155",
+  mode: "dark",
 };

@@ -12,30 +12,35 @@ const Header = styled.header`
 `;
 
 const Parking = styled.li`
-  background-color: white;
+  background-color: ${(props) => props.theme.cardBgColor};
+  color: ${(props) => props.theme.textColor};
   border-radius: 15px;
   margin-bottom: 10px;
   padding: 20px;
-  transition: color 0.2s ease-in;
+  transition: all 0.2s ease-in;
   cursor: pointer;
-  color: ${(props) =>
-    props.theme.bgColor === "#2f3640" ? "black" : "inherit"};
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 
   &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     color: ${(props) => props.theme.accentColor};
   }
+`;
+
+const Loader = styled.span`
+  text-align: center;
+  display: block;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  color: ${(props) => props.theme.accentColor};
 `;
 
 const Title = styled.h1`
   font-size: 48px;
   color: ${(props) => props.theme.accentColor};
 `;
-
-const Loader = styled.span`
-  text-align: center;
-  display: block;
-`;
-
 function ParkingList() {
   const navigate = useNavigate();
 
