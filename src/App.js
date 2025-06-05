@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import { useRecoilValue } from "recoil";
 import { isDarkModeAtom } from "./recoil/themeAtom";
