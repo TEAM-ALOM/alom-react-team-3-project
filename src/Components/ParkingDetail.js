@@ -1,7 +1,8 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Container from "../styles/Container";
-import { useEffect } from "react"; // ✅ useEffect 추가
+import { useEffect } from "react";
+import KakaoMap from "../Utils/KakaoMap";
 
 const Header = styled.header`
   height: 10vh;
@@ -128,6 +129,8 @@ function ParkingDetail() {
           </a>
         </Label>
       </InfoCard>
+
+      <KakaoMap address={주차장위치} />
 
       <FixedButton onClick={() => navigate("/")}>홈으로</FixedButton>
     </Container>
