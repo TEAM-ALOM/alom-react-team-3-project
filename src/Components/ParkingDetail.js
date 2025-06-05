@@ -89,6 +89,9 @@ function ParkingDetail() {
     일요일운영시간,
     시간당주차요금,
     주차장위치,
+    주차면수,
+    주차장형태,
+    비고,
   } = state;
 
   const naverMapUrl = `https://map.naver.com/v5/search/${encodeURIComponent(
@@ -102,10 +105,21 @@ function ParkingDetail() {
       </Header>
 
       <InfoCard>
+        <Label>
+          🛣️ 주차장 형태:{" "}
+          {주차장형태 === "노상"
+            ? "노상(도로 위) 주차장"
+            : "노외(도로 밖) 주차장"}
+        </Label>
+        <Label>
+          🛣️ 주차장 유형:{" "}
+          {비고 === "거주자" ? "거주자 우선 주차장" : "공영 주차장"}
+        </Label>
+        <Label>🕚 시간 당 주차요금: {시간당주차요금}</Label>
+        <Label>🚗 주차 면수: {주차면수}</Label>
         <Label>📅 평일: {평일운영시간}</Label>
         <Label>📅 토요일: {토요일운영시간}</Label>
         <Label>📅 일요일: {일요일운영시간}</Label>
-        <Label>🕚 시간 당 주차요금: {시간당주차요금}</Label>
         <Label>
           📍{" "}
           <a href={naverMapUrl} target="_blank" rel="noopener noreferrer">

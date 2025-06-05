@@ -45,7 +45,25 @@ export async function fetchParkingFee() {
 }
 
 export async function fetchAddress() {
-  // 시간 당 요금을 불러오는 경우
+  // 주차장 위치(주소)를 불러오는 경우
   const data = await fetchParkingList();
   return data.map((item) => item["주차장위치"]);
+}
+
+export async function fetchParkingCount() {
+  // 주차 면수를 불러오는 경우
+  const data = await fetchParkingList();
+  return data.map((item) => item["주차면수"]);
+}
+
+export async function fetchLocation() {
+  // 주차장 형태(노상/노외)를 불러오는 경우
+  const data = await fetchParkingList();
+  return data.map((item) => item["주차장형태"]);
+}
+
+export async function fetchType() {
+  // 주차장 형태(공영/거주자 우선)를 불러오는 경우
+  const data = await fetchParkingList();
+  return data.map((item) => item["비고"]);
 }
