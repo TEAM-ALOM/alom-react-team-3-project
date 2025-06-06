@@ -2,6 +2,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Container from "../styles/Container";
 import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchParkingList } from "../Utils/fetchParkingData";
 import KakaoMap from "../Utils/KakaoMap";
 
 const Header = styled.header`
@@ -63,25 +65,43 @@ const FixedButton = styled.button`
   }
 `;
 
+const Loader = styled.div`
+  text-align: center;
+  font-size: 18px;
+  margin-top: 50px;
+`;
+
 function ParkingDetail() {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  // ✅ ESC 키 이벤트 핸들러
+  const {
+    data: parkingList,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["parkingList"],
+    queryFn: fetchParkingList,
+  });
+
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
         navigate("/");
       }
     };
-
     window.addEventListener("keydown", handleEsc);
-    return () => {
-      window.removeEventListener("keydown", handleEsc);
-    };
+    return () => window.removeEventListener("keydown", handleEsc);
   }, [navigate]);
 
-  if (!state) return <div>데이터가 없습니다.</div>;
+  if (isLoading) return <Loader>로딩 중...</Loader>;
+  if (isError || !state) return <div>데이터를 불러오는 데 실패했습니다.</div>;
+
+  const selected = parkingList.find(
+    (p) => p["주차장명"] === state["주차장명"]
+  );
+
+  if (!selected) return <div>해당 주차장 정보를 찾을 수 없습니다.</div>;
 
   const {
     주차장명,
@@ -93,7 +113,7 @@ function ParkingDetail() {
     주차면수,
     주차장형태,
     비고,
-  } = state;
+  } = selected;
 
   const naverMapUrl = `https://map.naver.com/v5/search/${encodeURIComponent(
     주차장위치
@@ -133,10 +153,7 @@ function ParkingDetail() {
 
         <Label>
           📍{" "}
-          <a
-            href={naverMapUrl}
-            target='_blank'
-            rel='noopener noreferrer'>
+          <a href={naverMapUrl} target='_blank' rel='noopener noreferrer'>
             {주차장위치}
           </a>
         </Label>
