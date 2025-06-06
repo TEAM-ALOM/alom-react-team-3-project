@@ -83,15 +83,17 @@ function ParkingDetail() {
 
   if (!state) return <div>데이터가 없습니다.</div>;
 
-  const 주차장명 = state["주차장명"];
-  const 평일운영시간 = state["평일운영시간"];
-  const 토요일운영시간 = state["토요일 운영시간"];
-  const 일요일운영시간 = state["일요일운영시간"];
-  const 시간당주차요금 = state["시간당주차요금"];
-  const 주차장위치 = state["주차장위치"];
-  const 주차면수 = state["주차면수"];
-  const 주차장형태 = state["주차장형태"];
-  const 비고 = state["비고"];
+  const {
+    주차장명,
+    평일운영시간,
+    "토요일 운영시간": 토요일운영시간,
+    일요일운영시간,
+    시간당주차요금,
+    주차장위치,
+    주차면수,
+    주차장형태,
+    비고,
+  } = state;
 
   const naverMapUrl = `https://map.naver.com/v5/search/${encodeURIComponent(
     주차장위치

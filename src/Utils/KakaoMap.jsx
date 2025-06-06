@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
 function KakaoMap({ address }) {
-  console.log(window.kakao);
   useEffect(() => {
     const kakaoInit = () => {
       if (!window.kakao || !window.kakao.maps) return;
@@ -9,7 +8,7 @@ function KakaoMap({ address }) {
       window.kakao.maps.load(() => {
         const container = document.getElementById("map");
         const options = {
-          center: new window.kakao.maps.LatLng(37.5665, 126.978), // 기본 위치
+          center: new window.kakao.maps.LatLng(37.540458355, 127.069320357), // 기본 위치
           level: 3,
         };
         const map = new window.kakao.maps.Map(container, options);
